@@ -1,4 +1,4 @@
-#include "dir.h"
+#include "../include/dir.h"
 #include <dirent.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -41,16 +41,20 @@ DIR_T* Dir_select( const char *path, char* hint ) {
 			ep = readdir(dp);
 		}	
 	}
+
     rewinddir(dp);
 
-	// allocate memory to hold the count
-	dir_ptr->entries = (char**) malloc ( dir_ptr->count* sizeof(char*) );
+	// allocate memory to hold the entries
+	dir_ptr->entries = (char**) malloc ( dir_ptr->count * sizeof(char*) );
 
 	// fill the array
 	i= 0;
     ep = readdir(dp);
 	if ( hint == NULL) {
 		while(NULL != ep){
+
+            // A copy of source is created dynamically
+            // and pointer to copy is returned.
 			dir_ptr->entries[i] = strdup(ep->d_name);
 			++i;
 			ep = readdir(dp);
@@ -92,4 +96,12 @@ void Dir_free( DIR_T* d ) {
     }
 	free(d->entries);
     free (d);
+}
+
+char* Dir_concat(char *s1, char *s2)
+{
+    char *result = malloc(strlen(s1)+strlen(s2)+1);
+    strcpy(result, s1);
+    strcat(result, s2);
+    return result;
 }

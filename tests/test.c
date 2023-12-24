@@ -1,5 +1,5 @@
-#include "image.h"
-#include "dir.h"
+#include "../include/image.h"
+#include "../include/dir.h"
 
 #include <stdio.h>
 #include <time.h>
@@ -14,15 +14,19 @@ int main () {
 	DIR_T* dir;
 	int count;
 	char* entry;
-	
-    dir = Dir_select ("/documents/VSI_C", "Image");
+    char* path;
+	char* image_dir = "images/";
+    char* image_hint = "Image";
+    
+    dir = Dir_select (image_dir, image_hint);
 	count = Dir_get_count(dir);
 
 	average = 0;
 	for ( i = 0; i < count; ++i) {
 		entry = Dir_get_entry( dir, i );
+        path = Dir_concat(image_dir,entry);
 		begin = clock();
-		image = Image_new( entry );
+		image = Image_new( path );
 		average+= (double) (clock()-begin) / CLOCKS_PER_SEC;
 		Image_free(image);	
 	}
@@ -32,7 +36,7 @@ int main () {
 	printf("Average time over %i reads is: %f [ms] \n", count, average );
 	printf("--------------------\n\n");
 	
-	image = Image_new( "Image000002.dat" );
+    image = Image_new( path );
 	Image_print_header(image);
 	Image_print_data(image,0,0,10,10);
 	

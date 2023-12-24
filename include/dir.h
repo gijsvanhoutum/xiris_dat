@@ -11,5 +11,6 @@ DIR_T* Dir_select( const char *path, char* hint );
 int Dir_get_count( DIR_T* dir);
 char* Dir_get_entry( DIR_T* dir, int index );
 void Dir_free( DIR_T* dir );
+char* Dir_concat( char*,char*);
 
 #endif // _DIR_H
