@@ -3,6 +3,12 @@
 **XIRIS_DAT** is a small C library for reading binary files created by Xiris
 camera's. 
 
+<p align="center">
+  <img alt="Light" src="https://github.com/gijsvanhoutum/trec/blob/master/icons/screenshot_player.png?raw=true" width="45%">
+&nbsp; &nbsp; &nbsp; &nbsp;
+  <img alt="Dark" src="https://github.com/gijsvanhoutum/trec/blob/master/icons/screenshot_recorder.png?raw=true" width="45%">
+</p>
+
 ## Main Features / Comments
 Major information:
 
